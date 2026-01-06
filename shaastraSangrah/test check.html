@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+
+        <!-- Cart and Checkout -->
+        <section class="cart">
+            <h2 style="color: #DC4D01; text-align: center; font-size: 28px;">🛒 Your Cart</h2>
+            <ul id="cartItems" style="list-style: none;  padding: 0; margin-top: 20px;"></ul>
+            <div style="text-align: center; margin-top: 20px;">
+                <p style="font-size: 20px; ">Total: ₹<span id="cartTotal" style="font-weight: bold;">0.00</span></p><br>
+                <button onclick="showCheckout()"
+                    style="padding: 12px 25px; background-color: #DC4D01; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;">🧾
+                    Checkout</button>
+            </div>
+        </section>
+
+        <!-- Checkout Modal -->
+        <div id="checkoutModal" class="modal"
+            style="display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6);">
+            <div class="modal-content"
+                style="background-image: url(ima/pm.jpg); margin: 10% auto; padding: 30px; border: 1px solid #888; width: 90%; max-width: 500px; background-size: cover; border-radius: 10px; position: relative; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                <span class="close" onclick="closeCheckout()"
+                    style="position: absolute; right: 20px; top: 10px; font-size: 28px; font-weight: bold; color: #aaa; cursor: pointer;">&times;</span>
+                <h2 style="color: #DC4D01;">Secure Checkout</h2>
+                <p>Total Amount: ₹<span id="checkoutTotal" style="font-weight: bold;">0.00</span></p>
+                <div id="paymentForm" style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+
+                    <!-- click upi -->
+                    <div class="upic" id="upi" style="display: flex; justify-content: center; align-content: center;">
+                        <a onclick="selectupi()" class="news"
+                            style="display: inline-block; background-image: url('ima/upi.png'); width: 200px; min-height: 60px; background-size: cover; border-radius: 5px; padding: 2px; border: solid rgb(7, 72, 126); margin: 0vw 10px;">
+                        </a>
+                    </div>
+                    <hr style="margin: 10px 0;" />
+                    <!-- click cards -->
+                    <div class="cardc" id="card" style="display: flex; justify-content: center; align-content: center;">
+                        <a onclick="selectcard()" class="news"
+                            style="display: inline-block; background-image: url('ima/cards.jpg'); width: 320px; min-height: 55px; background-size: cover; border-radius: 5px; padding: 2px; border: solid rgb(34, 100, 3); margin: 0vw 10px;">
+                        </a>
+                    </div>
+                    <hr style="margin: 10px 0;" />
+                    <!-- click net banking -->
+                    <div class="inter" style="display: flex; justify-content: center; align-content: center;">
+                        <a href="Not-Connect" target="_blank" class="news"
+                            style="display: inline-block; background-image: url('ima/nb.png'); width:350px; min-height: 70px; background-size: cover; border-radius: 5px; padding: 2px; border: solid rgb(20, 55, 129); margin: 0vw 10px;">
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <!-- select upi -->
+        <div id="selectupi" class="modal"
+            style="display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6);">
+            <div class="modal-content"
+                style="background-image: url(ima/cc.jp); margin: 10% auto; padding: 30px; border: 1px solid #888; width: 90%; max-width: 500px; border-radius: 10px; position: relative; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                <span class="close" onclick="closeUpi()"
+                    style="position: absolute; right: 20px; top: 10px; font-size: 28px; font-weight: bold; color: #aaa; cursor: pointer;">&times;</span>
+                <h2 style="color: #DC4D01;">Secure Checkout</h2>
+                <p>Total Amount: ₹<span id="checkoutTotal" style="font-weight: bold;">0.00</span></p>
+                <div id="paymentForm" style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+
+                    <div class="upiselect" style="display: flex; justify-content: center; align-content: center;">
+
+                        <a class="news"
+                            style="display: inline-block; background-image: url('ima/PhonePe.png'); width: 50px; min-height: 50px; background-size: cover; border-radius: 20px; padding: 2px; border: solid white; margin: 0vw 10px;">
+                        </a>
+                        <hr style="margin: 10px 0;" />
+                        <a class="news"
+                            style="display: inline-block; background-image: url('ima/ptm.png'); width: 50px; min-height: 50px; background-size: cover; border-radius: 20px; padding: 2px; border: solid white; margin: 0vw 10px;">
+                        </a>
+                        <hr style="margin: 10px 0;" />
+                        <a class="news"
+                            style="display: inline-block; background-image: url('ima/gpay.png'); width: 50px; min-height: 50px; background-size: cover; border-radius: 20px; padding: 2px; border: solid white; margin: 0vw 10px;">
+                        </a>
+                        
+                    </div>
+                    <input type="text" id="cvv" placeholder="Enter UPI ID" required
+                        style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    <button onclick="upiPayment()"
+                        style="display: inline-block; background-color: greenyellow; width: 100px; min-height: 30px; border-radius: 5px; padding: 2px; border: solid rgb(7, 72, 126); margin: 0vw 10px; margin-left: 200px;">Submit
+                    </button>
+                </div>
+                <p id="paymentgo" style="margin-top: 20px;"></p>
+            </div>
+        </div>
+
+        <!-- select card -->
+        <div id="selectcard" class="modal"
+            style="display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6);">
+            <div class="modal-content"
+                style="background-image: url(ima/cc.jp); margin: 10% auto; padding: 30px; border: 1px solid #888; width: 90%; max-width: 500px; border-radius: 10px; position: relative; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                <span class="close" onclick="closeCard()"
+                    style="position: absolute; right: 20px; top: 10px; font-size: 28px; font-weight: bold; color: #aaa; cursor: pointer;">&times;</span>
+                <h2 style="color: #DC4D01;">Secure Checkout</h2>
+                <p>Total Amount: ₹<span id="checkoutTotal" style="font-weight: bold;">0.00</span></p>
+                <div id="paymentForm" style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+
+                                <input type="text" id="cardNumber" placeholder="Card Number" required
+                                    style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                                <input type="text" id="expiryDate" placeholder="MM/YYYY" required
+                                    style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                                <input type="text" id="cvv" placeholder="CVV" required
+                                    style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                                <button onclick="processPayment()"
+                                    style="background-color: #DC4D01; color: white; padding: 12px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;">💳
+                                    Pay Now</button>
+                            </div>
+                            <p id="paymentStatus" style="margin-top: 20px;"></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="script1.js"></script>
+    <script src="testcheck.js"></script>
+
+</body>
+
+</html>

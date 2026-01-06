@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- In your <head>, enforce secure connections -->
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>शास्त्र संग्रह – log in or signup</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-image: url(ima/head.jpg);
+      display: flex;
+      justify-content: space-between;
+      border: solid white;
+      border-radius: 10px;
+    }
+
+    nav ul {
+      display: flex;
+      margin: 8px;
+      color: white;
+    }
+
+    li {
+      display: flex;
+      margin: 10px 8px;
+      color: white;
+    }
+
+    .tytl {
+      color: white;
+      font-size: 250%;
+
+      font-style: oblique;
+    }
+
+    .bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      object-fit: cover;
+      opacity: 0.5;
+    }
+
+    #login-form {
+      background-image: url(ima/cc.jpg);
+    }
+
+    #signup-form {
+      background-image: url(ima/cc.jpg);
+    }
+    /* Hamburger icon style */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  width: 32px;
+  margin: 10px;
+}
+.hamburger span {
+  background: white;
+  border-radius: 2px;
+  height: 4px;
+  margin: 4px 0;
+  width: 100%;
+  transition: all 0.3s;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    display: none;
+    position: absolute;
+    background: #222;
+    right: 0;
+    width: 200px;
+    top: 70px;
+    z-index: 20;
+    border-radius: 10px;
+  }
+  .hamburger {
+    display: flex;
+  }
+  .nav-toggle:checked + .hamburger + ul {
+    display: flex;
+  }
+}
+
+  </style>
+</head>
+<header>
+  <div>
+    <img src="ima/ima.jpg" style="width: 45px; height: 45px; border-radius: 30px; margin: 4px 10px;" alt="logo">
+  </div><br><br>
+  <div class="tytl">शास्त्र संग्रह</div>
+  <div class="side">
+    <nav>
+      <!-- Hamburger Toggle Button -->
+<input type="checkbox" id="nav-toggle" class="nav-toggle"/>
+<label for="nav-toggle" class="hamburger">
+  <span></span>
+  <span></span>
+  <span></span>
+</label>
+
+      <ul>
+        <li>Home</li>
+        <a href="#contact" style="text-decoration: none;">
+          <li>Contact</li>
+        </a>
+        <li>Support</li>
+        <a href="#site-info" style="text-decoration: none;">
+          <li>Site Info</li>
+        </a>
+        <li>Download</li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<body style="margin: 0; font-family: Arial, sans-serif; background-color: #f0f2f5;">
+
+  <!-- Header -->
+
+
+  <img src="ima\bg.jpg" class="bg" alt="Background" />
+
+  <div style="display: flex; justify-content: center; align-items: center; height: 90vh; padding: 20px;">
+
+
+    <!-- Login Form -->
+    <div id="login-form"
+      style="flex: 1; max-width: 400px; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+      <h2 style="color: #DC4D01; font-size: 20px;">तमसो मा ज्योतिर्गमय।</h2><br>
+      <form id="login">
+        <input type="email" id="login-email" placeholder="Email" required
+          style="width: 95%; padding: 14px; margin-bottom: 12px; font-size: 16px; border: 1px solid #ddd; border-radius: 6px;" />
+        <br><br>
+
+        <input type="password" id="login-password" placeholder="Password" required
+          style="width: 95%; padding: 14px; margin-bottom: 12px; font-size: 16px; border: 1px solid #ddd; border-radius: 6px;" /><br /><br>
+
+        <input type="submit" value="Log In"
+          style="width: 100%; background-color: #DC4D01; color: white; padding: 14px; font-size: 18px; border: solid white; border-radius: 6px; cursor: pointer;" />
+        <br><br>
+
+        <a href="#"
+          style="color: #0a0a00; text-decoration: none; font-size: 14px;display: flex; justify-content: center; align-items: center;">Forgotten
+          password?</a><br />
+
+        <hr style="margin: 10px 0;" />
+
+        <a href="#" id="show-signup"
+          style="background-color: #42b72a; color: white; padding: 14px 20px; font-size: 16px; border: solid white; margin: 0px 140px; border-radius: 6px; text-decoration: none; display: flex; justify-content: center;align-items: center;">Sign
+          up</a>
+      </form>
+    </div>
+
+    <!-- Signup Form -->
+    <div id="signup-form"
+      style="display: none; flex: 1; max-width: 400px; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+      <h2 style="color: #DC4D01; font-size: 20px;">असतो मा सद्गमय।</h2><br>
+      <form id="signup">
+        <input type="text" id="signup-username" placeholder="Username" required
+          style="width: 95%; padding: 14px; margin-bottom: 12px; font-size: 16px; border: 1px solid #ddd; border-radius: 6px;" />
+
+        <input type="email" id="signup-email" placeholder="Email" required
+          style="width: 95%; padding: 14px; margin-bottom: 12px; font-size: 16px; border: 1px solid #ddd; border-radius: 6px;" />
+
+        <input type="password" id="signup-password" placeholder="Password" required
+          style="width: 95%; padding: 14px; margin-bottom: 12px; font-size: 16px; border: 1px solid #ddd; border-radius: 6px;" /><br />
+
+        <input type="submit" value="Sign Up"
+          style="width: 100%; background-color: #DC4D01; color: white; padding: 14px; font-size: 18px; border: solid white; border-radius: 6px; cursor: pointer;" />
+        <br><br>
+
+        <a href="#"
+          style="color: #040002; text-decoration: none; font-size: 14px;display: flex; justify-content: center; align-items: center;">Already
+          have an
+          Account?</a> <br>
+
+        <hr style="margin: 10px 0;" />
+
+        <a href="#" id="show-login"
+          style="background-color: #42b72a; color: white; padding: 14px 20px; font-size: 16px; border: solid white; margin: 0px 140px; border-radius: 6px; text-decoration: none; display: flex; justify-content: center;align-items: center;">Login</a>
+      </form>
+    </div>
+
+  </div>
+
+  <!-- Site Info Section -->
+  <section id="site-info" style="padding: 5px;background-image: url(ima/f.jpg);border-radius: 10px;">
+    <h2 style="color: #DC4D01;">Site Info</h2>
+    <p>This platform is dedicated to the collection and sharing of traditional and modern scriptures. Our mission is to
+      illuminate minds with timeless knowledge.</p>
+  </section><br>
+
+  <!-- Contact Section -->
+  <section id="contact" style="padding: 5px; background-image: url(ima/f.jpg);border-radius: 10px;">
+    <h2 style="color: #DC4D01;">Contact</h2>
+    <p>Email us at <a href="mailto:info@shaastrasangrah.com" style="color: #AA336A;">info@shaastrasangrah.com</a></p>
+  </section>
+
+  <script src="script.js">// Show Signup Form
+
+  </script>
+</body>
+
+</html>
